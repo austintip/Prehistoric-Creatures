@@ -1,0 +1,10 @@
+<h3>It's Creature Time!</h3>
+<h4>Who's coming to the Creature Party?</h4>
+<ul>
+    <li>
+        <% creatures.forEach(creature => { %>
+        <p><strong><%= creature.type %></strong>
+        <img src="<%= creature.img_url %>">
+        <% }) %>
+    </li>
+    </ul>
