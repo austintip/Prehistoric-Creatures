@@ -8,6 +8,12 @@ router.get('/', (req, res) => {
     let dinos = fs.readFileSync('./dinos.json');
     let dinoData = JSON.parse(dinos)
     console.log(dinoData);
+    var nameFilter = req.query.nameFilter;
+    if (nameFilter) {
+        dinoData = dinoData.filter(function(dino) {
+            return dino.name.toLowerCase() === nameFilter.toLowerCase();
+        });
+    };
     res.render('dinos/index', { dinos: dinoData })
 });
 
@@ -35,6 +41,6 @@ router.post('/', (req, res) => {
     fs.writeFileSync('./dinos.json', dinoJSON);
 
     res.redirect('/dinos');
-})
+});
 
 module.exports = router;
